@@ -5,7 +5,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Exception Rule",
-    "version": "17.0.4.2.4",
+    "version": "17.0.4.2.5",
     "development_status": "Mature",
     "category": "Generic Modules",
     "summary": """
