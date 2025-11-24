@@ -13,9 +13,6 @@ jobs:
     
     container:
       image: somesh0007/myrepo:dev
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
     
     steps:
       - name: Checkout code
