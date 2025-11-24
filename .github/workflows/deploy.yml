@@ -46,5 +46,6 @@ jobs:
         run: |
           export ANSIBLE_HOST_KEY_CHECKING=False
           ansible-playbook -i inventory.ini ansible/deploy_odoo.yml \
+            --private-key ~/.ssh/id_rsa \
             --limit "${{ steps.target.outputs.group }}" \
             --extra-vars "git_branch=${{ github.ref_name }} git_repo_url=${{ secrets.GIT_REPO_URL }}"
