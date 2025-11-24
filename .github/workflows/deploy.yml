@@ -13,6 +13,7 @@ jobs:
     
     container:
       image: somesh0007/myrepo:dev
+      options: --user root
     
     steps:
       - name: Checkout code
