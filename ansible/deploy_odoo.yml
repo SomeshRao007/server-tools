@@ -1,0 +1,27 @@
+---
+- name: Deploy Odoo Module
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Pull latest code
+      ansible.builtin.git:
+        repo: "{{ git_repo_url }}"
+        dest: "{{ custom_addons_path }}"
+        version: "{{ git_branch }}"
+        force: yes
+        accept_hostkey: yes
+      become: yes
+      become_user: "{{ odoo_user }}"
+
+    - name: Upgrade module
+      ansible.builtin.command:
+        cmd: "{{ odoo_bin_path }} -c {{ odoo_conf_path }} -d {{ odoo_db_name }} -u {{ module_to_upgrade }} --stop-after-init"
+      become: yes
+      become_user: "{{ odoo_user }}"
+
+    - name: Restart Odoo service
+      ansible.builtin.systemd:
+        name: "{{ odoo_service_name }}"
+        state: restarted
+      become: yes
